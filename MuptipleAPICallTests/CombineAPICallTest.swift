@@ -28,5 +28,25 @@ class CombineAPICallTest: XCTestCase {
         viewModel.loadDataWithZip()
         wait(for: [expectation], timeout: 2)
     }
+    func testLoadPostsFailure() {
+        let mock = CombineMockTest()
+        mock.shouldPostFailure = true
+        
+        let viewModel = CombinePipeLineViewModel()
+        
+        let expectation = XCTestExpectation(description: "Error received")
+        
+        viewModel.$error
+            .dropFirst()
+            .sink { error in
+                XCTAssertNotNil(error)
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        viewModel.loadDataWithZip()
+        
+        wait(for: [expectation], timeout: 2)
+    }
 }
 
