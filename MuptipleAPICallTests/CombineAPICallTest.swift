@@ -9,12 +9,13 @@ import Combine
 
 @testable import MuptipleAPICall
 
+@MainActor
 class CombineAPICallTest: XCTestCase {
     var cancellables: Set<AnyCancellable> = []
     
     func testLoadPostsSuccess() {
         let mock = CombineMockTest()
-        let viewModel = CombinePipeLineViewModel()
+        let viewModel = CombinePipeLineViewModel(api: mock)
         
         let expectation = XCTestExpectation(description: "Posts loaded")
         
@@ -32,7 +33,7 @@ class CombineAPICallTest: XCTestCase {
         let mock = CombineMockTest()
         mock.shouldPostFailure = true
         
-        let viewModel = CombinePipeLineViewModel()
+        let viewModel = CombinePipeLineViewModel(api: mock)
         
         let expectation = XCTestExpectation(description: "Error received")
         

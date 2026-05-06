@@ -16,7 +16,7 @@ class CombinePipeLineViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var api: APIServiceCombineProtocol
     
-    init(api: APIServiceCombineProtocol = APIServiceCombine()){
+    init(api: APIServiceCombineProtocol){
         self.api = api
     }
     // MARK: - Zip

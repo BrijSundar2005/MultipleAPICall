@@ -8,7 +8,8 @@ import UIKit
 import Combine
 
 class CombineViewController: UIViewController {
-    private let viewModel = CombinePipeLineViewModel()
+    let viewModel = CombinePipeLineViewModel(api: APIServiceCombine())
+    
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
